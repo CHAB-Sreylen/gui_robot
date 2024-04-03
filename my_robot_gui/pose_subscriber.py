@@ -34,33 +34,33 @@ class MyGUI:
         # Set the window size
         window_width, window_height = 1366, 768
         self.root.geometry(f'{window_width}x{window_height}')
-        self.root.configure(bg='lightgrey')
+        self.root.configure(bg='darkgray')
 
         # Create label name Location
         self.frame_location = tk.Frame(self.root, width=323, height=230, bg='white')
         self.frame_location.pack_propagate(False) # Prevents the frame from adjusting to its content
         self.frame_location.place(x=30, y=100)
-        self.label_location = tk.Label(self.frame_location, text="Location", bg='white', font=('Times 20'))
+        self.label_location = tk.Label(self.frame_location, text="Location", bg='white', font=('Times 20'), fg='blue')
         self.label_location.pack(pady=10)
         
         # Set Location of variable x, y and live real value 
-        self.lbl_x_val = tk.Label(self.root, text="", font=("Times 16"), bg='white' )
+        self.lbl_x_val = tk.Label(self.root, text="", font=("Times 16"), bg='white', fg='green')
         self.lbl_x_val.place(x=50, y=150)
         
-        self.lbl_y_val = tk.Label(self.root, text="", font=("Times 16"), bg='white' )
+        self.lbl_y_val = tk.Label(self.root, text="", font=("Times 16"), bg='white', fg='green' )
         self.lbl_y_val.place(x=50, y=200)
 
-        self.lbl_theta_val = tk.Label(self.root, text="", font=("Times 16"), bg='white' )
+        self.lbl_theta_val = tk.Label(self.root, text="", font=("Times 16"), bg='white', fg='green' )
         self.lbl_theta_val.place(x=50, y=250)
         
-        self.lbl_number_val = tk.Label(self.root, text="", font=("Times 16"), bg='white' )
+        self.lbl_number_val = tk.Label(self.root, text="", font=("Times 16"), bg='white', fg='green' )
         self.lbl_number_val.place(x=50, y=300)
 
         # self.create_frame(946, 228, 390, 100, 25, "Sensor Camera:")
         self.frame_sensor = tk.Frame(self.root, width=945, height=228, bg='white')
         self.frame_sensor.pack_propagate(False)
         self.frame_sensor.place(x=390, y=100)
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='white', font=('Times 20'))
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='white', font=('Times 20'), fg='orange')
         self.label_sensor.pack(pady=10)
         
         
@@ -68,11 +68,11 @@ class MyGUI:
         self.frame_area = tk.Frame(self.root, width=1301, height=248, bg='white')
         self.frame_area.pack_propagate(False)
         self.frame_area.place(x=30, y=378)
-        self.label_area = tk.Label(self.frame_area, text="Area 1", bg='white', font=('Times 20'))
+        self.label_area = tk.Label(self.frame_area, text="Area 1", bg='white', font=('Times 20'), fg='purple')
         self.label_area.pack(pady=25)
 
         #Set label name currennt task in x=50 and y=410
-        self.currenttask = tk.Label(self.root, text="Current task", font=("Times 11"), bg='white' )
+        self.currenttask = tk.Label(self.root, text="Current task", font=("Times 11"), bg='white', fg='red')
         self.currenttask.place(x=50, y=410)
         self.x = 50
         x_loc = 50
@@ -81,13 +81,13 @@ class MyGUI:
             self.x = self.x+190
         #if i <=6 it display in y=460 and x=x+190
             if(i <= 6):
-                label = tk.Label(text=f"Text {i}", bg='white')
+                label = tk.Label(text=f"Text {i}", bg='white', fg='darkgreen')
                 label.place(x=x_loc, y=460)
                 x_loc = x_loc + 190
         #if i > 6 display in y=510 and x=x+190
             else:
                 x_loc = 50 + 190*z
-                label = tk.Label(text=f"Text {i}", bg='white')
+                label = tk.Label(text=f"Text {i}", bg='white', fg='darkgreen')
                 label.place(x=x_loc, y=510)
                 x_loc = x_loc + 190
                 z = z + 1
@@ -98,19 +98,19 @@ class MyGUI:
         self.button_retry["state"] = "normal"
 
         #Create button Connected
-        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Times 15'))
+        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Times 15'), fg='white')
         self.button_connected.pack(side=tk.LEFT, padx=5)
         self.button_connected.place(x=30, y=30, width=120, height=40)
         self.button_connected["state"] = "normal"
 
         # Create the second button
-        self.button_blue = tk.Button(self.root, text="Blue", command=self.toggle_button2, bg="blue", font=('Times 15'))
+        self.button_blue = tk.Button(self.root, text="Blue", command=self.toggle_button2, bg="blue", font=('Times 15'), fg='white')
         self.button_blue.pack(side=tk.LEFT, padx=5)
         self.button_blue.place(x=1220, y=30, width=120, height=40)
         self.button_blue["state"] = "normal"
 
         # Create the Start button
-        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="white", font=('Times 15'))
+        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="white", font=('Times 15'), fg='white')
         self.button_start.pack(side=tk.LEFT, padx=5)
         self.button_start.place(x=30, y=676, width=120, height=40)
         self.button_start["state"] = "normal"
@@ -169,7 +169,9 @@ class ROSNode(Node):
 
         # Create a subscriber to receive data from turtlesim
         self.subscription = self.create_subscription(
-            Pose,'/turtle1/pose', self.pose_callback,10
+            Pose,
+            '/turtle1/pose', 
+            self.pose_callback, 10
         )
     
     def number_callback(self, msg):
