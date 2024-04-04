@@ -44,16 +44,16 @@ class MyGUI:
         self.label_location.pack(pady=10)
         
         # Set Location of variable x, y and live real value 
-        self.lbl_x_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green')
+        self.lbl_x_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='lightgreen')
         self.lbl_x_val.place(x=50, y=150)
         
-        self.lbl_y_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green' )
+        self.lbl_y_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='lightgreen' )
         self.lbl_y_val.place(x=50, y=200)
 
-        self.lbl_theta_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green' )
+        self.lbl_theta_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='lightgreen' )
         self.lbl_theta_val.place(x=50, y=250)
         
-        self.lbl_number_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green' )
+        self.lbl_number_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='lightgreen' )
         self.lbl_number_val.place(x=50, y=300)
 
         # self.create_frame(946, 228, 390, 100, 25, "Sensor Camera:")
