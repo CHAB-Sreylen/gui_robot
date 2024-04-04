@@ -37,42 +37,42 @@ class MyGUI:
         self.root.configure(bg='darkgray')
 
         # Create label name Location
-        self.frame_location = tk.Frame(self.root, width=323, height=230, bg='darkgray')
+        self.frame_location = tk.Frame(self.root, width=323, height=230, bg='#3c3f44')
         self.frame_location.pack_propagate(False) # Prevents the frame from adjusting to its content
         self.frame_location.place(x=30, y=100)
-        self.label_location = tk.Label(self.frame_location, text="Location", bg='darkgray', font=('Times 20'), fg='blue')
+        self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Times 20'), fg='blue')
         self.label_location.pack(pady=10)
         
         # Set Location of variable x, y and live real value 
-        self.lbl_x_val = tk.Label(self.root, text="", font=("Times 16"), bg='darkgray', fg='green')
+        self.lbl_x_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green')
         self.lbl_x_val.place(x=50, y=150)
         
-        self.lbl_y_val = tk.Label(self.root, text="", font=("Times 16"), bg='darkgray', fg='green' )
+        self.lbl_y_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green' )
         self.lbl_y_val.place(x=50, y=200)
 
-        self.lbl_theta_val = tk.Label(self.root, text="", font=("Times 16"), bg='darkgray', fg='green' )
+        self.lbl_theta_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green' )
         self.lbl_theta_val.place(x=50, y=250)
         
-        self.lbl_number_val = tk.Label(self.root, text="", font=("Times 16"), bg='darkgray', fg='green' )
+        self.lbl_number_val = tk.Label(self.root, text="", font=("Times 16"), bg='#3c3f44', fg='green' )
         self.lbl_number_val.place(x=50, y=300)
 
         # self.create_frame(946, 228, 390, 100, 25, "Sensor Camera:")
-        self.frame_sensor = tk.Frame(self.root, width=945, height=228, bg='darkgray')
+        self.frame_sensor = tk.Frame(self.root, width=945, height=228, bg='#3c3f44')
         self.frame_sensor.pack_propagate(False)
         self.frame_sensor.place(x=390, y=100)
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='darkgray', font=('Times 20'), fg='blue')
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='#3c3f44', font=('Times 20'), fg='blue')
         self.label_sensor.pack(pady=10)
         
         
         #Create frame of area
-        self.frame_area = tk.Frame(self.root, width=1301, height=248, bg='darkgray')
+        self.frame_area = tk.Frame(self.root, width=1301, height=248, bg='#3c3f44')
         self.frame_area.pack_propagate(False)
         self.frame_area.place(x=30, y=378)
-        self.label_area = tk.Label(self.frame_area, text="Area 1", bg='darkgray', font=('Times 20'), fg='purple')
+        self.label_area = tk.Label(self.frame_area, text="Area 1", bg='#3c3f44', font=('Times 20'), fg='purple')
         self.label_area.pack(pady=25)
 
         #Set label name currennt task in x=50 and y=410
-        self.currenttask = tk.Label(self.root, text="Current task", font=("Times 11"), bg='darkgray', fg='red')
+        self.currenttask = tk.Label(self.root, text="Current task", font=("Times 11"), bg='#3c3f44', fg='red')
         self.currenttask.place(x=50, y=410)
         self.x = 50
         x_loc = 50
@@ -81,13 +81,13 @@ class MyGUI:
             self.x = self.x+190
         #if i <=6 it display in y=460 and x=x+190
             if(i <= 6):
-                label = tk.Label(text=f"Text {i}", bg='darkgray', fg='darkgreen')
+                label = tk.Label(text=f"Text {i}", bg='#3c3f44', fg='darkgreen')
                 label.place(x=x_loc, y=460)
                 x_loc = x_loc + 190
         #if i > 6 display in y=510 and x=x+190
             else:
                 x_loc = 50 + 190*z
-                label = tk.Label(text=f"Text {i}", bg='darkgray', fg='darkgreen')
+                label = tk.Label(text=f"Text {i}", bg='#3c3f44', fg='darkgreen')
                 label.place(x=x_loc, y=510)
                 x_loc = x_loc + 190
                 z = z + 1
