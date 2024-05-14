@@ -60,8 +60,8 @@ class MyGUI:
         self.lbl_x_val.pack()
         self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen')
         self.lbl_y_val.pack()
-        self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_number_val.pack()
+        self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen',height=80)
+        
 
         self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
         self.frame_sensor.grid(row=1, column=3, columnspan=3, padx=30,  sticky="nsew")
@@ -70,22 +70,22 @@ class MyGUI:
 
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
         self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
-        self.label_area = tk.Label(self.frame_area, text="Area1", bg='#3c3f44', font=('Times 30'), fg='yellow')
+        self.label_area = tk.Label(self.frame_area, text="Area2", bg='#3c3f44', font=('Times 30'), fg='yellow')
         self.label_area.pack(pady=10)
-        self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Times 30"), bg='#3c3f44', fg='yellow')
-        # self.currenttask.pack(side=tk.LEFT, padx=10, anchor='w')
+        self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Times 20"), bg='#3c3f44', fg='yellow')
+        self.currenttask.pack(pady=30,padx=30)
 
         # Dynamically create and place 6 labels for task text in rows
         self.task_frames = []
         for i in range(2):  # Create 2 rows, each can hold 3 labels
             self.frame = tk.Frame(self.frame_area, bg='#3c3f44')
-            self.frame.pack(side=tk.BOTTOM,expand=True)
+            self.frame.pack()
             self.task_frames.append(self.frame)
         for i in range(6):
             if i % 3 == 0:
                 self.current_frame = self.task_frames[i // 3]
             self.label = tk.Label(self.current_frame, text=f"Task{i+1}: {self.tasks[i]}", bg='#3c3f44', fg='pink',font=("Times", 40))
-            self.label.pack(side=tk.LEFT, padx=30, pady=10)
+            self.label.pack(side=tk.LEFT, padx=10, pady=10)
         
         #Button Start
         self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="green", font=('Times 30'), fg='black')
@@ -181,24 +181,17 @@ def start_ros_node(gui):
     node2 = DataPublisher(gui)
     node3 = DrawCircleNode(gui)
 
-     #create a MultiThreadExecutor
     executor = MultiThreadedExecutor()
-
-    #Add nodes to the executor
     executor.add_node(node1)
-    executor.add_node(node2)
-    executor.add_node(node3)
 
     executor.spin()
     node1.destroy_node()
-    node2.destroy_node()
-    node3.destroy_node()
     rclpy.shutdown()
 
 def main():
     gui = MyGUI()
-    gui.node = threading.Thread(target=start_ros_node, args=(gui,))
-    gui.node.start()
+    gui_thread = threading.Thread(target=start_ros_node, args=(gui,))
+    gui_thread.start()
     gui.run()
 
 if __name__ == "__main__":
