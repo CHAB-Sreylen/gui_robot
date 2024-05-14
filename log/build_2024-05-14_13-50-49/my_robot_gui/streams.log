@@ -1,0 +1,28 @@
+[1.533s] Invoking command in '/home/sreylenchab/ros2_ws/src/my_robot_gui': PYTHONPATH=/home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/prefix_override:/home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/my_robot_gui build --build-base /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build install --record /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/install.log --install-scripts $base/lib/my_robot_gui --single-version-externally-managed install_data
+[2.072s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[2.073s]   warnings.warn(
+[2.094s] running egg_info
+[2.095s] writing build/my_robot_gui/my_robot_gui.egg-info/PKG-INFO
+[2.096s] writing dependency_links to build/my_robot_gui/my_robot_gui.egg-info/dependency_links.txt
+[2.097s] writing entry points to build/my_robot_gui/my_robot_gui.egg-info/entry_points.txt
+[2.097s] writing requirements to build/my_robot_gui/my_robot_gui.egg-info/requires.txt
+[2.097s] writing top-level names to build/my_robot_gui/my_robot_gui.egg-info/top_level.txt
+[2.102s] reading manifest file 'build/my_robot_gui/my_robot_gui.egg-info/SOURCES.txt'
+[2.104s] writing manifest file 'build/my_robot_gui/my_robot_gui.egg-info/SOURCES.txt'
+[2.105s] running build
+[2.105s] running build_py
+[2.105s] copying my_robot_gui/pose_subscriber.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui
+[2.106s] running install
+[2.107s] running install_lib
+[2.109s] copying /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui/pose_subscriber.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui
+[2.111s] byte-compiling /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui/pose_subscriber.py to pose_subscriber.cpython-310.pyc
+[2.116s] running install_data
+[2.116s] running install_egg_info
+[2.120s] removing '/home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui-0.0.0-py3.10.egg-info' (and everything under it)
+[2.121s] Copying build/my_robot_gui/my_robot_gui.egg-info to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui-0.0.0-py3.10.egg-info
+[2.123s] running install_scripts
+[2.170s] Installing data_publisher script to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/my_robot_gui
+[2.171s] Installing draw_circle script to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/my_robot_gui
+[2.172s] Installing pose_subscriber script to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/my_robot_gui
+[2.172s] writing list of installed files to '/home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/install.log'
+[2.229s] Invoked command in '/home/sreylenchab/ros2_ws/src/my_robot_gui' returned '0': PYTHONPATH=/home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/prefix_override:/home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w: /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/my_robot_gui build --build-base /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build install --record /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/install.log --install-scripts $base/lib/my_robot_gui --single-version-externally-managed install_data

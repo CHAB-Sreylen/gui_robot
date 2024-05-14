@@ -1,0 +1,45 @@
+/usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+  warnings.warn(
+running egg_info
+creating build/my_robot_gui/my_robot_gui.egg-info
+writing build/my_robot_gui/my_robot_gui.egg-info/PKG-INFO
+writing dependency_links to build/my_robot_gui/my_robot_gui.egg-info/dependency_links.txt
+writing entry points to build/my_robot_gui/my_robot_gui.egg-info/entry_points.txt
+writing requirements to build/my_robot_gui/my_robot_gui.egg-info/requires.txt
+writing top-level names to build/my_robot_gui/my_robot_gui.egg-info/top_level.txt
+writing manifest file 'build/my_robot_gui/my_robot_gui.egg-info/SOURCES.txt'
+reading manifest file 'build/my_robot_gui/my_robot_gui.egg-info/SOURCES.txt'
+writing manifest file 'build/my_robot_gui/my_robot_gui.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui
+copying my_robot_gui/draw_circle.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui
+copying my_robot_gui/pose_subscriber.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui
+copying my_robot_gui/data_publisher.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui
+copying my_robot_gui/__init__.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui
+running install
+running install_lib
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui
+copying /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui/draw_circle.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui
+copying /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui/pose_subscriber.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui
+copying /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui/data_publisher.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui
+copying /home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/build/lib/my_robot_gui/__init__.py -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui
+byte-compiling /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui/draw_circle.py to draw_circle.cpython-310.pyc
+byte-compiling /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui/pose_subscriber.py to pose_subscriber.cpython-310.pyc
+byte-compiling /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui/data_publisher.py to data_publisher.cpython-310.pyc
+byte-compiling /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/share/ament_index
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/share/ament_index/resource_index
+creating /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/share/ament_index/resource_index/packages
+copying resource/my_robot_gui -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/share/ament_index/resource_index/packages
+copying package.xml -> /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/share/my_robot_gui
+running install_egg_info
+Copying build/my_robot_gui/my_robot_gui.egg-info to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/python3.10/site-packages/my_robot_gui-0.0.0-py3.10.egg-info
+running install_scripts
+Installing data_publisher script to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/my_robot_gui
+Installing draw_circle script to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/my_robot_gui
+Installing pose_subscriber script to /home/sreylenchab/ros2_ws/src/my_robot_gui/install/my_robot_gui/lib/my_robot_gui
+writing list of installed files to '/home/sreylenchab/ros2_ws/src/my_robot_gui/build/my_robot_gui/install.log'
