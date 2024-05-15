@@ -44,58 +44,54 @@ class MyGUI:
         for i in range(7):
             self.root.grid_rowconfigure(i, weight=1)
 
-        # Create buttons
-        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white')
+        # Create buttons0
+        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30'), fg='white')
         self.button_connected.grid(row=0, column=0, padx=30, pady=50, sticky="nsew")
 
-        self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30 bold'), fg='white')
+        self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30'), fg='white')
         self.button_blue.grid(row=0, column=5, padx=30, pady=50, sticky="nsew")
 
         # Create frames and labels
         self.frame_location = tk.Frame(self.root, bg='#3c3f44')
         self.frame_location.grid(row=1, column=0, columnspan=3, padx=30, sticky="nsew")
-        self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Arial 30'), fg='yellow')
         self.label_location.pack(pady=10)
-        self.lbl_x_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_x_val.pack(pady=10)
-        self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_y_val.pack()
-        self.lbl_yaw_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_yaw_val.pack()
-        self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
+        self.lbl_x_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen')
+        self.lbl_x_val.pack(side=LEFT,anchor='w')
+        self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen')
+        self.lbl_y_val.pack(side=BOTTOM,anchor='w')
+        self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen')
         self.lbl_number_val.pack()
 
         self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
         self.frame_sensor.grid(row=1, column=3, columnspan=3, padx=30,  sticky="nsew")
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='#3c3f44', font=('Arial 30'), fg='yellow')
         self.label_sensor.pack(pady=10)
 
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
         self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
-        self.label_area = tk.Label(self.frame_area, text="Area1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.label_area = tk.Label(self.frame_area, text="Area1", bg='#3c3f44', font=('Arial 30'), fg='yellow')
         self.label_area.pack(pady=10)
-        self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 30 bold"), bg='#3c3f44', fg='yellow')
-        self.currenttask.pack(side=tk.TOP, padx=70, anchor='w')
+        self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 30"), bg='#3c3f44', fg='yellow')
+        self.currenttask.pack(side=tk.TOP, padx=10, anchor='w',pady=20)
 
         # Dynamically create and place 6 labels for task text in rows
         self.task_frames = []
         for i in range(2):  # Create 2 rows, each can hold 3 labels
             self.frame = tk.Frame(self.frame_area, bg='#3c3f44')
-            # self.frame.pack(side=tk.BOTTOM,expand=True)
-            self.frame.pack()
+            self.frame.pack(side=tk.BOTTOM,anchor='w')
             self.task_frames.append(self.frame)
         for i in range(6):
             if i % 3 == 0:
                 self.current_frame = self.task_frames[i // 3]
-            self.label = tk.Label(self.current_frame, text=f"Task{i+1}: {self.tasks[i]}", bg='#3c3f44', fg='pink',font=("Arial", 40,"bold"))
-            self.label.pack(side=tk.LEFT,anchor='w', padx=30, pady=10)
-            # self.label.pack(anchor='w', padx=30, pady=10)
+            self.label = tk.Label(self.current_frame, text=f"Task{i+1}: {self.tasks[i]}", bg='#3c3f44', fg='pink',font=("Arial", 40))
+            self.label.pack(side=tk.LEFT, padx=10,)
         
-        # Button Start
-        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="green", font=('Arial 30 bold'), fg='white')
+        #Button Start
+        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="green", font=('Arial 30'), fg='black')
         self.button_start.grid(row=6, column=0, padx=30, pady=10, sticky="nsew")
-        # Button retry 
-        self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Arial 30 bold'))
+        #Button retry 
+        self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Arial 30'))
         self.button_retry.grid(row=6, column=1, padx=100, pady=10, sticky="nsew")
         self.button_retry.configure(bg='red')
 
@@ -163,22 +159,21 @@ class ROSNode(Node):
         if start_value == 1:
             self.gui.button_start.config(text='Started', fg='white', bg='green')
         else:
-            self.gui.button_start.config(text='Start', fg='white', bg='red')
+            self.gui.button_start.config(text='Start', fg='black', bg='red')
 
         if retry_value == 1:
             self.gui.button_retry.config(text='Retried', fg='white', bg='green')
         else:
-            self.gui.button_retry.config(text='Retry', fg='white', bg='red')
+            self.gui.button_retry.config(text='Retry', fg='black', bg='red')
 
         if color_value == 1:
             self.gui.button_blue.config(text='Blue', fg='white', bg='blue')
         else:
-            self.gui.button_blue.config(text='Red', fg='white', bg='red')
+            self.gui.button_blue.config(text='Red', fg='black', bg='red')
 
     def pose_callback(self, msg):
         self.gui.lbl_x_val.config(text=f"x: {msg.x:.1f} ")
         self.gui.lbl_y_val.config(text=f"y: {msg.y:.1f} ")
-        self.gui.lbl_yaw_val.config(text=f"yaw: {msg.y:.1f} ")
        
 def start_ros_node(gui):
     rclpy.init(args=None)

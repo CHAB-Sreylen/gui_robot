@@ -47,23 +47,23 @@ class MyGUI:
         self.frame_location.pack(pady=100)
         self.frame_location.pack()
         # self.frame_location.place(x=30, y=100)
-        self.label_location = tk.Label(self.frame_location, text="Location",  bg='#3c3f44', font=('Times 40'), fg='white')
+        self.label_location = tk.Label(self.frame_location, text="Location",  bg='#3c3f44', font=('Arial 40'), fg='white')
         self.label_location.pack(pady=10)
         
         # Set Location of variable x, y and live real value 
-        self.lbl_x_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen')
+        self.lbl_x_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen')
         # self.lbl_x_val.place(x=50, y=150)
         self.lbl_x_val.pack(pady=20)  
         
-        self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen' )
+        self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen' )
         # self.lbl_y_val.place(x=50, y=200)
         self.lbl_y_val.pack(pady=20)
 
-        self.lbl_theta_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen',height=80 )
+        self.lbl_theta_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen',height=80 )
         # self.lbl_theta_val.place(x=50, y=250)
         self.lbl_theta_val.pack(pady=20)
 
-        self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Times 50"), bg='#3c3f44', fg='lightgreen',height=80)
+        self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Arial 50"), bg='#3c3f44', fg='lightgreen',height=80)
         # self.lbl_number_val.place(x=50, y=300)
 
         # self.create_frame(946, 228, 390, 100, 25, "Sensor Camera:")
@@ -72,7 +72,7 @@ class MyGUI:
         self.frame_sensor.pack()
         self.frame_sensor.pack(pady=100,padx=10)
         # self.frame_sensor.place(x=390, y=100)
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='#3c3f44', font=('Times 40'), fg='yellow')
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor Camera:", bg='#3c3f44', font=('Arial 40'), fg='yellow')
         self.label_sensor.pack(pady=10)
 
         
@@ -85,11 +85,11 @@ class MyGUI:
         self.frame_area.pack(side=tk.BOTTOM,expand=True)
 
         # self.frame_area.place(x=30, y=378)
-        self.label_area = tk.Label(self.frame_area, text="Area 1", bg='#3c3f44', font=('Times 30'), fg='white')
+        self.label_area = tk.Label(self.frame_area, text="Area 1", bg='#3c3f44', font=('Arial 30'), fg='white')
         self.label_area.pack(pady=25)
 
         #Set label name currennt task in x=50 and y=410
-        self.currenttask = tk.Label(self.frame_area, text="Current task", font=("Times 30"), bg='#3c3f44', fg='red')
+        self.currenttask = tk.Label(self.frame_area, text="Current task", font=("Arial 30"), bg='#3c3f44', fg='red')
         # self.currenttask.place(x=50, y=410)
         self.x = 50
         x_loc = 50
@@ -98,25 +98,25 @@ class MyGUI:
             self.x = self.x+190
         #if i <=6 it display in y=460 and x=x+190
             if(i <= 6):
-                label = tk.Label(self.frame_area,text=f"Text {i}", bg='#3c3f44', fg='lightgreen', font=("Times 30"))
+                label = tk.Label(self.frame_area,text=f"Text {i}", bg='#3c3f44', fg='lightgreen', font=("Arial 30"))
                 label.place(x=x_loc, y=460)
                 x_loc = x_loc + 190
         #if i > 6 display in y=510 and x=x+190
             else:
                 x_loc = 50 + 190*z
-                label = tk.Label(self.frame_area,text=f"Text {i}", bg='#3c3f44', fg='lightgreen',font=("Times 30"))
+                label = tk.Label(self.frame_area,text=f"Text {i}", bg='#3c3f44', fg='lightgreen',font=("Arial 30"))
                 label.place(x=x_loc, y=510)
                 x_loc = x_loc + 190
                 z = z + 1
         #Create button retry
-        self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Times 30'))
+        self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Arial 30'))
         self.button_retry.place(x=190, y=676, width=120, height=40)
         self.button_retry.configure(bg='white')
         self.button_retry["state"] = "normal"
         self.button_retry.pack(side=tk.BOTTOM)
 
         #Create button Connected
-        self.button_connected = tk.Button(self.frame1, text="Connected", command=self.toggle_button1, bg="blue", font=('Times 30'), fg='white')
+        self.button_connected = tk.Button(self.frame1, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30'), fg='white')
         # self.button_connected.pack(padx=5)
         self.button_connected.pack(side=tk.TOP,padx=10, pady=10)
 
@@ -124,13 +124,13 @@ class MyGUI:
         self.button_connected["state"] = "normal"
 
         # Create the second button
-        self.button_blue = tk.Button(self.frame2,text="Blue", command=self.toggle_button2, bg="blue", font=('Times 30'), fg='white')
+        self.button_blue = tk.Button(self.frame2,text="Blue", command=self.toggle_button2, bg="blue", font=('Arial 30'), fg='white')
         self.button_blue.pack(side=tk.LEFT, padx=5)
         # self.button_blue.place(x=1220, y=30, width=200, height=60)
         self.button_blue["state"] = "normal"
 
         # Create the Start button
-        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="white", font=('Times 20'), fg='white')
+        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="white", font=('Arial 20'), fg='white')
         self.button_start.pack(side=tk.LEFT, padx=5)
         self.button_start.place(x=30, y=676, width=120, height=40)
         self.button_start["state"] = "normal"
