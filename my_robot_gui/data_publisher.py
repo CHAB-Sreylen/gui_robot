@@ -8,15 +8,28 @@ class DataPublisher(Node):
     def __init__(self, gui=None):
         super().__init__("data_publisher")
         self.gui = gui
-        # self.publisher_ = self.create_publisher(Int32, '/number_topic', 10)
+        self.publisher_ = self.create_publisher(Int32, '/number_topic', 10)
+        self.timer_array = self.create_timer(1.0, self.publish_num)
         #Array publish
         self.publish_arr = self.create_publisher(Int32MultiArray, '/array_number', 10)
         self.timer_array = self.create_timer(1.0, self.publish_array)
         # self.timer_ = self.create_timer(1.0, self.publish_number)
-        # self.counter = 0
+        self.counter = 0
         self.start_value = 0
         self.retry_value = 0
         self.color_value = 1
+    
+    def publish_num(self):
+        msg = Int32()
+        msg.data = self.counter
+        print("Publish Number:", msg.data)
+        self.publisher_.publish(msg)
+        self.counter += 1
+        if self.counter == 4:
+            self.counter = 0
+            
+        self.publisher_.publish(msg)
+
     
     def publish_array(self):
         msg = Int32MultiArray()
@@ -41,7 +54,6 @@ class DataPublisher(Node):
                 self.color_value = 1
             else:
                 self.color_value = 0
-
         
         self.publish_arr.publish(msg)
                      

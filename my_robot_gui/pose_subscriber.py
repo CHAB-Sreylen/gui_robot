@@ -76,33 +76,20 @@ class MyGUI:
         self.lbl_finder_Y = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
         self.lbl_finder_Y.pack(pady=5)
         self.lbl_IMU_Z = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_IMU_Z.pack(pady=5,padx=50,anchor='w')
+        self.lbl_IMU_Z.pack(pady=5,padx=30)
         self.lbl_proximity=tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
         self.lbl_proximity.pack(pady=5)
 
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
         self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
-        self.label_area = tk.Label(self.frame_area, text="Area1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.label_area = tk.Label(self.frame_area, text="ROS1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
         self.label_area.pack(pady=10)
         self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 30 bold"), bg='#3c3f44', fg='yellow')
         self.currenttask.pack(side=tk.TOP, padx=70, anchor='w')
 
-        # Dynamically create and place 6 labels for task text in rows
-        self.task_frames = []
-        for i in range(2):  # Create 2 rows, each can hold 3 labels
-            self.frame = tk.Frame(self.frame_area, bg='#3c3f44')
-            # self.frame.pack(side=tk.BOTTOM,expand=True)
-            self.frame.pack()
-            self.task_frames.append(self.frame)
-            # add to the list 
-        for i in range(6):
-            if i % 3 == 0:
-                self.current_frame = self.task_frames[i // 3]
-            self.label = tk.Label(self.current_frame, text=f"Task{i+1}: {self.tasks[i]}", bg='#3c3f44', fg='pink',font=("Arial", 40,"bold"))
-            self.label.pack(side=tk.LEFT,anchor='w', padx=30, pady=10)
-            # tk.left : pack the widget to the left side of container
-            # anchor = 'w': refer the point of label to the west side in the pack (parent) 
-            # self.label.pack(anchor='w', padx=30, pady=10)
+        self.label_task=tk.Label(self.frame_area,text=" ",font=("Arial 50 bold"), bg='#3c3f44', fg='yellow')
+        self.label_task.pack()
+
         
         # Button Start
         self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="green", font=('Arial 30 bold'), fg='white')
@@ -167,13 +154,19 @@ class ROSNode(Node):
             self.pose_callback,
             10
         )
+        self.subscription_number = self.create_subscription(
+            Int32,
+            '/number_topic',
+            self.number_data,
+            10
+        )
 
     def number_callback(self, msg):
         number = msg.data
         start_value = number[0]
         retry_value = number[1]
         color_value = number[2]
-        task_value= number[3]
+        
 
         if start_value == 1:
             self.gui.button_start.config(text='Started', fg='white', bg='green')
@@ -199,6 +192,17 @@ class ROSNode(Node):
         # else:
         #     self.gui.config(text='collect padding rice', fg='white')
     
+    def number_data(self, msg):
+        number = msg.data
+        
+        if number == 1:
+            self.gui.label_task.config(text='Pick up seeding', fg='white')
+        elif number == 2:
+            self.gui.label_task.config(text='Planting seeding', fg='white')
+        elif number == 3:
+            self.gui.label_task.config(text='Collect empty grain', fg='white')
+        else:
+            self.gui.label_task.config(text='collect padding rice', fg='white')
 
 
     def pose_callback(self, msg):
@@ -209,6 +213,7 @@ class ROSNode(Node):
         self.gui.lbl_finder_Y.config(text=f"Range Finder Y =  {msg.y:.1f} ")
         self.gui.lbl_IMU_Z.config(text=f"IMU Z =  {msg.y:.1f} ")
         self.gui.lbl_proximity.config(text=f"Range Finder X =  {msg.y:.1f} ")
+        
 
 
 
