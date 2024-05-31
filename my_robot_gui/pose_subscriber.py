@@ -40,20 +40,22 @@ class MyGUI:
 
         # Configure grid
         for i in range(6):
-            self.root.grid_columnconfigure(i, weight=1)
+            self.root.grid_columnconfigure(i, weight=1) # weight refer to the extra space of column when the window resize 
         for i in range(7):
             self.root.grid_rowconfigure(i, weight=1)
 
         # Create buttons
-        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white')
+        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white') 
         self.button_connected.grid(row=0, column=0, padx=30, pady=50, sticky="nsew")
+
+        # n = north, s=south, e = east, w=west , expand with horizontal and vertical
 
         self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30 bold'), fg='white')
         self.button_blue.grid(row=0, column=5, padx=30, pady=50, sticky="nsew")
 
         # Create frames and labels
         self.frame_location = tk.Frame(self.root, bg='#3c3f44')
-        self.frame_location.grid(row=1, column=0, columnspan=3, padx=30, sticky="nsew")
+        self.frame_location.grid(row=1, column=0, columnspan=2, padx=30, sticky="nsew")
         self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
         self.label_location.pack(pady=10)
         self.lbl_x_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
@@ -66,9 +68,17 @@ class MyGUI:
         self.lbl_number_val.pack()
 
         self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
-        self.frame_sensor.grid(row=1, column=3, columnspan=3, padx=30,  sticky="nsew")
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
+        self.frame_sensor.grid(row=1, column=2, columnspan=4, padx=30,  sticky="nsew")
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor of Ros1:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
         self.label_sensor.pack(pady=10)
+        self.lbl_finder_X = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_finder_X.pack(pady=5)
+        self.lbl_finder_Y = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_finder_Y.pack(pady=5)
+        self.lbl_IMU_Z = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_IMU_Z.pack(pady=5,padx=50,anchor='w')
+        self.lbl_proximity=tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_proximity.pack(pady=5)
 
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
         self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
@@ -84,11 +94,14 @@ class MyGUI:
             # self.frame.pack(side=tk.BOTTOM,expand=True)
             self.frame.pack()
             self.task_frames.append(self.frame)
+            # add to the list 
         for i in range(6):
             if i % 3 == 0:
                 self.current_frame = self.task_frames[i // 3]
             self.label = tk.Label(self.current_frame, text=f"Task{i+1}: {self.tasks[i]}", bg='#3c3f44', fg='pink',font=("Arial", 40,"bold"))
             self.label.pack(side=tk.LEFT,anchor='w', padx=30, pady=10)
+            # tk.left : pack the widget to the left side of container
+            # anchor = 'w': refer the point of label to the west side in the pack (parent) 
             # self.label.pack(anchor='w', padx=30, pady=10)
         
         # Button Start
@@ -98,6 +111,7 @@ class MyGUI:
         self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Arial 30 bold'))
         self.button_retry.grid(row=6, column=1, padx=100, pady=10, sticky="nsew")
         self.button_retry.configure(bg='red')
+        # configure use to change the properties form blue to red in widget 
 
     def run(self):
         self.root.mainloop()
@@ -159,6 +173,7 @@ class ROSNode(Node):
         start_value = number[0]
         retry_value = number[1]
         color_value = number[2]
+        task_value= number[3]
 
         if start_value == 1:
             self.gui.button_start.config(text='Started', fg='white', bg='green')
@@ -175,10 +190,28 @@ class ROSNode(Node):
         else:
             self.gui.button_blue.config(text='Red', fg='white', bg='red')
 
+        # if task_value == 1:
+        #     self.gui.config(text='Pick up seeding', fg='white')
+        # if task_value == 2:
+        #     self.gui.config(text='Planting seeding', fg='white')
+        # if task_value == 3:
+        #     self.gui.config(text='Collect empty grain', fg='white')
+        # else:
+        #     self.gui.config(text='collect padding rice', fg='white')
+    
+
+
     def pose_callback(self, msg):
         self.gui.lbl_x_val.config(text=f"x: {msg.x:.1f} ")
         self.gui.lbl_y_val.config(text=f"y: {msg.y:.1f} ")
         self.gui.lbl_yaw_val.config(text=f"yaw: {msg.y:.1f} ")
+        self.gui.lbl_finder_X.config(text=f"Range Finder X =  {msg.x:.1f} ")
+        self.gui.lbl_finder_Y.config(text=f"Range Finder Y =  {msg.y:.1f} ")
+        self.gui.lbl_IMU_Z.config(text=f"IMU Z =  {msg.y:.1f} ")
+        self.gui.lbl_proximity.config(text=f"Range Finder X =  {msg.y:.1f} ")
+
+
+
        
 def start_ros_node(gui):
     rclpy.init(args=None)

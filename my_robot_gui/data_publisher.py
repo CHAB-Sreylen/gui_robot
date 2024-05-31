@@ -41,6 +41,7 @@ class DataPublisher(Node):
                 self.color_value = 1
             else:
                 self.color_value = 0
+
         
         self.publish_arr.publish(msg)
                      
