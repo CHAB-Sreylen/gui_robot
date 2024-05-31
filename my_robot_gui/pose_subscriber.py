@@ -46,45 +46,71 @@ class MyGUI:
 
         # Create buttons
         self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white') 
-        self.button_connected.grid(row=0, column=0, padx=30, pady=50, sticky="nsew")
+        self.button_connected.grid(row=0, column=0, padx=30, pady=20, sticky="nsew")
 
         # n = north, s=south, e = east, w=west , expand with horizontal and vertical
 
         self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30 bold'), fg='white')
-        self.button_blue.grid(row=0, column=5, padx=30, pady=50, sticky="nsew")
+        self.button_blue.grid(row=0, column=5, padx=30, pady=20, sticky="nsew")
 
         # Create frames and labels
         self.frame_location = tk.Frame(self.root, bg='#3c3f44')
         self.frame_location.grid(row=1, column=0, columnspan=2, padx=30, sticky="nsew")
         self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
         self.label_location.pack(pady=10)
-        self.lbl_x_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_x_val.pack(pady=10)
-        self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_y_val.pack()
-        self.lbl_yaw_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
-        self.lbl_yaw_val.pack()
+
+        # frame of variable x 
+        self.frame_x = tk.Frame(self.frame_location,bg='#3c3f44')
+        self.frame_x.pack(side=tk.TOP, anchor="nw",padx=30)
+        self.lbl_x = tk.Label(self.frame_x, text="X:", font=("Arial 40 bold"), bg='#3c3f44', fg='#38E54D')
+        self.lbl_x.pack(side=tk.LEFT)
+        self.lbl_x_val = tk.Label(self.frame_x, text="",  bg='#3c3f44', fg='#38E54D')
+        self.lbl_x_val.pack(side=tk.LEFT, padx=10)
+
+        # frame of variable y 
+
+        self.frame_yaw = tk.Frame(self.frame_location,bg='#3c3f44')
+        self.frame_yaw.pack(side=tk.RIGHT,pady=20)
+        self.lbl_yaw = tk.Label(self.frame_yaw, text="Yaw:", font=("Arial 40 bold"), bg='#3c3f44', fg='#5AB2FF')
+        self.lbl_yaw.pack(anchor='n')
+        self.lbl_yaw_val = tk.Label(self.frame_yaw, text="",  bg='#3c3f44', fg='#5AB2FF')
+        self.lbl_yaw_val.pack(anchor='s', padx=10)
+
+
+        # self.lbl_y_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
+        # self.lbl_y_val.pack()
+
+        #frame of variable yaw
+        self.frame_y = tk.Frame(self.frame_location,bg='#3c3f44')
+        self.frame_y.pack(side=tk.BOTTOM,anchor="nw",padx=30)
+        self.lbl_y= tk.Label(self.frame_y, text="y:", font=("Arial 40 bold"), bg='#3c3f44', fg='#FFA62F')
+        self.lbl_y.pack(side=tk.LEFT)
+        self.lbl_y_val = tk.Label(self.frame_y, text="", bg='#3c3f44', fg='#FFA62F')
+        self.lbl_y_val.pack(side=tk.LEFT, pady=30,padx=10)
+
+        # self.lbl_yaw_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
+        # self.lbl_yaw_val.pack()
         self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
         self.lbl_number_val.pack()
 
         self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
         self.frame_sensor.grid(row=1, column=2, columnspan=4, padx=30,  sticky="nsew")
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor of Ros1:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor of R1:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
         self.label_sensor.pack(pady=10)
         self.lbl_finder_X = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_finder_X.pack(pady=5)
+        self.lbl_finder_X.pack(pady=10)
         self.lbl_finder_Y = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_finder_Y.pack(pady=5)
+        self.lbl_finder_Y.pack(pady=10)
         self.lbl_IMU_Z = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_IMU_Z.pack(pady=5,padx=30)
+        self.lbl_IMU_Z.pack(pady=10,padx=30)
         self.lbl_proximity=tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_proximity.pack(pady=5)
+        self.lbl_proximity.pack(pady=10)
 
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
         self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
-        self.label_area = tk.Label(self.frame_area, text="ROS1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.label_area = tk.Label(self.frame_area, text="R1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
         self.label_area.pack(pady=10)
-        self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 30 bold"), bg='#3c3f44', fg='yellow')
+        self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 15 bold"), bg='#3c3f44', fg='yellow')
         self.currenttask.pack(side=tk.TOP, padx=70, anchor='w')
 
         self.label_task=tk.Label(self.frame_area,text=" ",font=("Arial 50 bold"), bg='#3c3f44', fg='yellow')
@@ -183,14 +209,7 @@ class ROSNode(Node):
         else:
             self.gui.button_blue.config(text='Red', fg='white', bg='red')
 
-        # if task_value == 1:
-        #     self.gui.config(text='Pick up seeding', fg='white')
-        # if task_value == 2:
-        #     self.gui.config(text='Planting seeding', fg='white')
-        # if task_value == 3:
-        #     self.gui.config(text='Collect empty grain', fg='white')
-        # else:
-        #     self.gui.config(text='collect padding rice', fg='white')
+        
     
     def number_data(self, msg):
         number = msg.data
@@ -206,9 +225,9 @@ class ROSNode(Node):
 
 
     def pose_callback(self, msg):
-        self.gui.lbl_x_val.config(text=f"x: {msg.x:.1f} ")
-        self.gui.lbl_y_val.config(text=f"y: {msg.y:.1f} ")
-        self.gui.lbl_yaw_val.config(text=f"yaw: {msg.y:.1f} ")
+        self.gui.lbl_x_val.config(text=f"{msg.x:.1f} ", font=("Arial", 110, "bold",),)
+        self.gui.lbl_y_val.config(text=f"{msg.y:.1f} ", font=("Arial", 110, "bold",))
+        self.gui.lbl_yaw_val.config(text=f"{msg.y:.1f} ", font=("Arial", 110, "bold",))
         self.gui.lbl_finder_X.config(text=f"Range Finder X =  {msg.x:.1f} ")
         self.gui.lbl_finder_Y.config(text=f"Range Finder Y =  {msg.y:.1f} ")
         self.gui.lbl_IMU_Z.config(text=f"IMU Z =  {msg.y:.1f} ")
