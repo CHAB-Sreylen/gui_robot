@@ -11,6 +11,8 @@ from std_msgs.msg import Int32
 from .data_publisher import DataPublisher
 from .draw_circle import DrawCircleNode
 from rclpy.executors import MultiThreadedExecutor
+from PIL import Image, ImageTk
+
 class MyGUI:
     def __init__(self):
         # Create the main window
@@ -49,6 +51,13 @@ class MyGUI:
         self.button_connected.grid(row=0, column=0, padx=30, pady=20, sticky="nsew")
 
         # n = north, s=south, e = east, w=west , expand with horizontal and vertical
+        
+        photo = Image.open("my_robot_gui/assets/cropped-Logo-ITC.png")
+        resized_image = photo.resize((300,150), Image.ANTIALIAS)
+        convert_image = ImageTk.PhotoImage(resized_image)
+
+        self.label = tk.Label(self.root,image=convert_image,width=150,height=150)
+        self.label.pack(side=tk.TOP)
 
         self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30 bold'), fg='white')
         self.button_blue.grid(row=0, column=5, padx=30, pady=20, sticky="nsew")
