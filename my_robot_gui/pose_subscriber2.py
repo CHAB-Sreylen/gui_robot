@@ -71,18 +71,10 @@ class MyGUI:
         self.image_label.grid(row=0, column=1)
         # self.image_label.pack(row=0,column=0, side=tk.TOP)
 
-        # Create buttons
+        
+
         self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white') 
         self.button_connected.grid(row=0, column=0, padx=30, pady=20, sticky="nsew")
-
-        # n = north, s=south, e = east, w=west , expand with horizontal and vertical
-        
-        # photo = Image.open("my_robot_gui/assets/cropped-Logo-ITC.png")
-        # resized_image = photo.resize((300,150), Image.ANTIALIAS)
-        # convert_image = ImageTk.PhotoImage(resized_image)
-
-        # self.label = tk.Label(self.root,image=convert_image,width=150,height=150)
-        # self.label.pack(side=tk.TOP)
 
         self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30 bold'), fg='white')
         self.button_blue.grid(row=0, column=5, padx=30, pady=20, sticky="nsew")
@@ -130,19 +122,29 @@ class MyGUI:
         self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
         self.frame_sensor.grid(row=1, column=2, columnspan=4, padx=30,  sticky="nsew")
         self.label_sensor = tk.Label(self.frame_sensor, text="Sensor of R1:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
-        self.label_sensor.pack(pady=10)
-        self.lbl_finder_X = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_finder_X.pack(pady=10)
-        self.lbl_finder_Y = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_finder_Y.pack(pady=10)
-        self.lbl_IMU_Z = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_IMU_Z.pack(pady=10,padx=30)
-        self.lbl_proximity=tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_proximity.pack(pady=10)
+        
+        self.frame_lidar = tk.Label(self.frame_sensor,bg='#3c3f44')
+        self.frame_lidar.pack(side=tk.TOP,anchor="nw",padx=30,pady=10)
+
+        self.lbl_lidar= tk.Label(self.frame_lidar,text="Lidar: ",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_lidar.pack(side=tk.LEFT,pady=10)
+        self.lbl_finder_X = tk.Label(self.frame_lidar,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_finder_X.pack(side=tk.LEFT,pady=10)
+        self.lbl_finder_Y = tk.Label(self.frame_lidar,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_finder_Y.pack(side=tk.LEFT,pady=10)
+
+        self.lbl_odemetery_X = tk.Label(self.frame_sensor, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen', anchor='w')
+        self.lbl_odemetery_X.pack(side='top', fill='x', pady=10,padx=30)
+
+        self.lbl_odemetery_Y = tk.Label(self.frame_sensor, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen', anchor='w')
+        self.lbl_odemetery_Y.pack(side='top', fill='x', pady=10,padx=30)
+
+        self.lbl_IMU_Z = tk.Label(self.frame_sensor, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen', anchor='w')
+        self.lbl_IMU_Z.pack(side='top', fill='x', pady=10, padx=30)
 
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
         self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
-        self.label_area = tk.Label(self.frame_area, text="R1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.label_area = tk.Label(self.frame_area, text="R2", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
         self.label_area.pack(pady=10)
         self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 15 bold"), bg='#3c3f44', fg='yellow')
         self.currenttask.pack(side=tk.TOP, padx=70, anchor='w')
@@ -163,6 +165,10 @@ class MyGUI:
     def run(self):
         self.root.mainloop()
 
+    # def remove_background(self, image):
+    #     # Example of simple background removal using ImageFilter
+    #     # You may need more sophisticated techniques depending on your images
+    #     return image.filter(ImageFilter.)
     def toggle_button1(self):
         if self.button_connected["text"] == "Connected":
             self.button_connected["text"] = "Disconnected"
@@ -201,10 +207,11 @@ class ROSNode(Node):
         super().__init__("ros_node")
         self.gui = gui
 
-        self.sensor1 = "Range Finder X"
-        self.sensor2 = "Range Finder Y"
-        self.sensor3 = "IMU Z"
-        self.sensor4 = "Proximity X"
+        self.sensor1 = "X"
+        self.sensor2 = "Y"
+        self.sensor3 = "Odometery X "
+        self.sensor4 = "Odometery Y"
+        self.sensor5 = "IMU Z"
         self.subscription_num = self.create_subscription(
             Int32MultiArray,
             '/array_number',
@@ -268,9 +275,9 @@ class ROSNode(Node):
         self.gui.lbl_yaw_val.config(text=f"{msg.y:.1f} ", font=("Arial", 110, "bold",))
         self.gui.lbl_finder_X.config(text=f"{self.sensor1} =  {msg.x:.1f} ")
         self.gui.lbl_finder_Y.config(text=f"{self.sensor2} =  {msg.y:.1f} ")
-        self.gui.lbl_IMU_Z.config(text=f"{self.sensor3} =  {msg.y:.1f} ")
-        self.gui.lbl_proximity.config(text=f"{self.sensor4} =  {msg.y:.1f} ")
-        
+        self.gui.lbl_odemetery_X.config(text=f"{self.sensor3} =  {msg.y:.1f} ")
+        self.gui.lbl_odemetery_Y.config(text=f"{self.sensor4} =  {msg.y:.1f} ")
+        self.gui.lbl_IMU_Z.config(text=f"{self.sensor5} =  {msg.y:.1f} ")
 
 
 

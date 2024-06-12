@@ -1,5 +1,5 @@
 from setuptools import setup
-
+import glob
 package_name = 'my_robot_gui'
 
 setup(
@@ -10,6 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/assets', glob.glob('my_robot_gui/assets/*'))
         # ('share/' + package_name + '/msg', ['msg/Data.msg']),  # add Data.msg
     ],
     install_requires=['setuptools'],
@@ -23,6 +24,7 @@ setup(
         'console_scripts': [
             "draw_circle = my_robot_gui.draw_circle:main",
             "pose_subscriber = my_robot_gui.pose_subscriber:main",
+            "pose_subscriber2 = my_robot_gui.pose_subscriber2:main",
             "data_publisher = my_robot_gui.data_publisher:main",
             "test = my_robot_gui.test:main"
         ],
