@@ -26,7 +26,7 @@ setup(
             "pose_subscriber = my_robot_gui.pose_subscriber:main",
             "pose_subscriber2 = my_robot_gui.pose_subscriber2:main",
             "data_publisher = my_robot_gui.data_publisher:main",
-            "test = my_robot_gui.test:main"
+            "test = my_robot_gui.test_gui:main"
         ],
     },
 )

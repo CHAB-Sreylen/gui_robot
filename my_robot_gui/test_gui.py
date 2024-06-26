@@ -36,7 +36,6 @@ class MyGUI:
             "Hello World 6"
         ] # only 6 value to this array
 
-        # Create a label to display the image
 
         # Set the window size
         window_width, window_height = 1366, 768
@@ -46,7 +45,7 @@ class MyGUI:
         # Configure grid
         for i in range(6):
             self.root.grid_columnconfigure(i, weight=1) # weight refer to the extra space of column when the window resize 
-        for i in range(7):
+        for i in range(8):
             self.root.grid_rowconfigure(i, weight=1)
 
         package_share_directory = get_package_share_directory('my_robot_gui')
@@ -69,42 +68,33 @@ class MyGUI:
         # self.image_label.pack(row=0,column=0, side=tk.TOP)
 
         # Create buttons
-        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white') 
-        self.button_connected.grid(row=0, column=0, padx=30, pady=20, sticky="nsew")
+        self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 25 bold'), fg='white') 
+        self.button_connected.grid(row=0, column=0, padx=10, pady=20, sticky="nsew")
 
-        # n = north, s=south, e = east, w=west , expand with horizontal and vertical
-        
-        # photo = Image.open("my_robot_gui/assets/cropped-Logo-ITC.png")
-        # resized_image = photo.resize((300,150), Image.ANTIALIAS)
-        # convert_image = ImageTk.PhotoImage(resized_image)
-
-        # self.label = tk.Label(self.root,image=convert_image,width=150,height=150)
-        # self.label.pack(side=tk.TOP)
-
-        self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 30 bold'), fg='white')
-        self.button_blue.grid(row=0, column=5, padx=30, pady=20, sticky="nsew")
+        self.button_blue = tk.Button(self.root, text="Blue Team", command=self.toggle_button2, bg="blue", font=('Arial 25 bold'), fg='white')
+        self.button_blue.grid(row=0, column=5, padx=10, pady=20, sticky="nsew")
 
         # Create frames and labels
         self.frame_location = tk.Frame(self.root, bg='#3c3f44')
-        self.frame_location.grid(row=1, column=0, columnspan=2, padx=30, sticky="nsew")
-        self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.frame_location.grid(row=1, column=0, columnspan=2, padx=10, sticky="nsew")
+        self.label_location = tk.Label(self.frame_location, text="Location", bg='#3c3f44', font=('Arial 25 bold'), fg='yellow')
         self.label_location.pack(pady=10)
 
         # frame of variable x 
         self.frame_x = tk.Frame(self.frame_location,bg='#3c3f44')
-        self.frame_x.pack(side=tk.TOP, anchor="nw",padx=30)
-        self.lbl_x = tk.Label(self.frame_x, text="X:", font=("Arial 40 bold"), bg='#3c3f44', fg='#38E54D')
+        self.frame_x.pack(side=tk.TOP, anchor="nw",padx=10)
+        self.lbl_x = tk.Label(self.frame_x, text="X:", font=("Arial 36 bold"), bg='#3c3f44', fg='#38E54D')
         self.lbl_x.pack(side=tk.LEFT)
-        self.lbl_x_val = tk.Label(self.frame_x, text="",  bg='#3c3f44', fg='#38E54D')
+        self.lbl_x_val = tk.Label(self.frame_x, text="",  bg='#3c3f44', fg='#38E54D', font=("Arial 90 bold"))
         self.lbl_x_val.pack(side=tk.LEFT, padx=10)
 
         # frame of variable y 
 
         self.frame_yaw = tk.Frame(self.frame_location,bg='#3c3f44')
-        self.frame_yaw.pack(side=tk.RIGHT,pady=20)
-        self.lbl_yaw = tk.Label(self.frame_yaw, text="Yaw:", font=("Arial 40 bold"), bg='#3c3f44', fg='#5AB2FF')
+        self.frame_yaw.pack(side=tk.RIGHT,pady=10)
+        self.lbl_yaw = tk.Label(self.frame_yaw, text="Yaw:", font=("Arial 36 bold"), bg='#3c3f44', fg='#5AB2FF')
         self.lbl_yaw.pack(anchor='n')
-        self.lbl_yaw_val = tk.Label(self.frame_yaw, text="",  bg='#3c3f44', fg='#5AB2FF')
+        self.lbl_yaw_val = tk.Label(self.frame_yaw, text="",  bg='#3c3f44', fg='#5AB2FF', font=("Arial 90 bold"))
         self.lbl_yaw_val.pack(anchor='s', padx=10)
 
 
@@ -113,47 +103,103 @@ class MyGUI:
 
         #frame of variable yaw
         self.frame_y = tk.Frame(self.frame_location,bg='#3c3f44')
-        self.frame_y.pack(side=tk.BOTTOM,anchor="nw",padx=30)
-        self.lbl_y= tk.Label(self.frame_y, text="y:", font=("Arial 40 bold"), bg='#3c3f44', fg='#FFA62F')
+        self.frame_y.pack(side=tk.BOTTOM,anchor="nw",padx=10)
+        self.lbl_y= tk.Label(self.frame_y, text="y:", font=("Arial 36 bold"), bg='#3c3f44', fg='#FFA62F')
         self.lbl_y.pack(side=tk.LEFT)
-        self.lbl_y_val = tk.Label(self.frame_y, text="", bg='#3c3f44', fg='#FFA62F')
-        self.lbl_y_val.pack(side=tk.LEFT, pady=30,padx=10)
+        self.lbl_y_val = tk.Label(self.frame_y, text="", bg='#3c3f44', fg='#FFA62F', font=("Arial 90 bold"))
+        self.lbl_y_val.pack(side=tk.LEFT, pady=20,padx=10)
 
         # self.lbl_yaw_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
         # self.lbl_yaw_val.pack()
         self.lbl_number_val = tk.Label(self.frame_location, text="", font=("Arial 50 bold"), bg='#3c3f44', fg='lightgreen')
         self.lbl_number_val.pack()
 
-        self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
-        self.frame_sensor.grid(row=1, column=2, columnspan=4, padx=30,  sticky="nsew")
-        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor of R1:", bg='#3c3f44', font=('Arial 30 bold bold'), fg='yellow')
+
+        self.frame_sensor_value = tk.Frame(self.root, bg='#3c3f44')
+        self.frame_sensor_value.grid(row=1, column=2, columnspan=2, padx=10,  sticky="nsew")
+        self.label_sensor = tk.Label(self.frame_sensor_value, text="Sensor Status:", bg='#3c3f44', font=('Arial 25 bold bold'), fg='yellow')
         self.label_sensor.pack(pady=10)
-        self.lbl_finder_X = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+
+        #frame lidar is a sub frame of frame sensor value
+        self.frame_lidar = tk.Frame(self.frame_sensor_value, bg='#3c3f44')
+        self.frame_lidar.pack(side='left', anchor='n', padx=10)
+
+        self.frame_ps4 = tk.Frame(self.frame_sensor_value, bg='#3c3f44')
+        self.frame_ps4.pack(side='right', anchor='n', padx=10)
+
+
+        # for frame Lidar
+        self.lbl_Lidar = tk.Label(self.frame_lidar,text="Lidar",font=("Arial 20 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_Lidar.pack(pady=10, padx=10)
+        self.lbl_Encoder1 = tk.Label(self.frame_lidar,text="Encoder 1",font=("Arial 20 bold"),bg='#3c3f44', fg='white')
+        self.lbl_Encoder1.pack(pady=10)
+        self.lbl_Encoder2 = tk.Label(self.frame_lidar,text="Encoder 2",font=("Arial 20 bold"),bg='#3c3f44', fg='white')
+        self.lbl_Encoder2.pack(pady=10)
+        self.lbl_Encoder3 = tk.Label(self.frame_lidar,text="Encoder 3",font=("Arial 20 bold"),bg='#3c3f44', fg='white')
+        self.lbl_Encoder3.pack(pady=10)
+        self.lbl_Encoder4 = tk.Label(self.frame_lidar,text="Encoder 4",font=("Arial 20 bold"),bg='#3c3f44', fg='white')
+        self.lbl_Encoder4.pack(pady=10)
+        self.lbl_Encoder5 = tk.Label(self.frame_lidar,text="Encoder 5",font=("Arial 20 bold"),bg='#3c3f44', fg='white')
+        self.lbl_Encoder5.pack(pady=10)
+
+        #for frame PS4
+        self.lbl_ps4 = tk.Label(self.frame_ps4,text="PS4",font=("Arial 20 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_ps4.pack(pady=10)
+
+        # Sensor frame
+        self.frame_sensor = tk.Frame(self.root, bg='#3c3f44')
+        self.frame_sensor.grid(row=1, column=4, columnspan=2, padx=10,  sticky="nsew")
+        self.label_sensor = tk.Label(self.frame_sensor, text="Sensor of R1:", bg='#3c3f44', font=('Arial 25 bold bold'), fg='yellow')
+        self.label_sensor.pack(pady=10)
+        self.lbl_finder_X = tk.Label(self.frame_sensor,text="",font=("Arial 36 bold"),bg='#3c3f44', fg='lightgreen')
         self.lbl_finder_X.pack(pady=10)
-        self.lbl_finder_Y = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_finder_Y = tk.Label(self.frame_sensor,text="",font=("Arial 36 bold"),bg='#3c3f44', fg='lightgreen')
         self.lbl_finder_Y.pack(pady=10)
-        self.lbl_IMU_Z = tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
-        self.lbl_IMU_Z.pack(pady=10,padx=30)
-        self.lbl_proximity=tk.Label(self.frame_sensor,text="",font=("Arial 50 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_IMU_Z = tk.Label(self.frame_sensor,text="",font=("Arial 36 bold"),bg='#3c3f44', fg='lightgreen')
+        self.lbl_IMU_Z.pack(pady=10,padx=10)
+        self.lbl_proximity=tk.Label(self.frame_sensor,text="",font=("Arial 36 bold"),bg='#3c3f44', fg='lightgreen')
         self.lbl_proximity.pack(pady=10)
 
+        self.frame_state = tk.Frame(self.root, bg='#3c3f44')
+        self.frame_state.grid(row=2,rowspan=2, column=0, columnspan=6, padx=10, pady=10, sticky="nsew")
+        self.label_state = tk.Label(self.frame_state, text="Robot State (R1)", bg='#3c3f44', font=('Arial 25 bold'), fg='yellow')
+        self.label_state.pack(fill='both', expand=True)
+
+        self.frame_state_current = tk.Frame(self.frame_state, bg='#3c3f44')
+        self.frame_state_current.pack(side='left', fill='both', expand=True, padx=10 )
+
+        self.currenttask = tk.Label(self.frame_state_current, text="Current State:", font=("Arial 15 bold"), bg='#3c3f44', fg='lightgreen')
+        self.currenttask.pack(side=tk.TOP, padx=10, anchor='w')
+        self.label_task1=tk.Label(self.frame_state_current,text="State 1",font=("Arial 38 bold"), bg='#3c3f44', fg='white')
+        self.label_task1.pack(pady=10)
+
+
+        self.frame_state_next = tk.Frame(self.frame_state, bg='#3c3f44')
+        self.frame_state_next.pack(side='left', fill='both', expand=True, padx=10)
+
+        self.next_task = tk.Label(self.frame_state_next, text="Next State:", font=("Arial 15 bold"), bg='#3c3f44', fg='lightgreen')
+        self.next_task.pack(side=tk.TOP, padx=10, anchor='w')
+        self.label_task1=tk.Label(self.frame_state_next,text="State 1",font=("Arial 38 bold"), bg='#3c3f44', fg='white')
+        self.label_task1.pack(pady=10)
+
+
+
         self.frame_area = tk.Frame(self.root, bg='#3c3f44')
-        self.frame_area.grid(row=2,rowspan=3, column=0, columnspan=6, padx=30, pady=10, sticky="nsew")
-        self.label_area = tk.Label(self.frame_area, text="R1", bg='#3c3f44', font=('Arial 30 bold'), fg='yellow')
+        self.frame_area.grid(row=5,rowspan=2, column=0, columnspan=6, padx=10, pady=10, sticky="nsew")
+        self.label_area = tk.Label(self.frame_area, text="Action (R1)", bg='#3c3f44', font=('Arial 25 bold'), fg='yellow')
         self.label_area.pack(pady=10)
         self.currenttask = tk.Label(self.frame_area, text="Current Task:", font=("Arial 15 bold"), bg='#3c3f44', fg='yellow')
-        self.currenttask.pack(side=tk.TOP, padx=70, anchor='w')
+        self.currenttask.pack(side=tk.TOP, padx=10, anchor='w')
 
-        self.label_task=tk.Label(self.frame_area,text=" ",font=("Arial 50 bold"), bg='#3c3f44', fg='yellow')
-        self.label_task.pack()
-
+        self.label_task=tk.Label(self.frame_area,text=" ",font=("Arial 38 bold"), bg='#3c3f44', fg='white')
+        self.label_task.pack(pady=10)
         
         # Button Start
-        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="green", font=('Arial 30 bold'), fg='white')
-        self.button_start.grid(row=6, column=0, padx=30, pady=10, sticky="nsew")
+        self.button_start = tk.Button(self.root, text="Start", command=self.toggle_button_start, bg="green", font=('Arial 25 bold'), fg='white')
+        self.button_start.grid(row=7, column=0, padx=10, pady=10, sticky="nsew")
         # Button retry 
-        self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Arial 30 bold'))
-        self.button_retry.grid(row=6, column=1, padx=100, pady=10, sticky="nsew")
+        self.button_retry = tk.Button(self.root, text='Retry', command=self.toggle_button_retry, font=('Arial 25 bold'))
+        self.button_retry.grid(row=7, column=1, padx=100, pady=10, sticky="nsew")
         self.button_retry.configure(bg='red')
         # configure use to change the properties form blue to red in widget 
 
@@ -260,9 +306,9 @@ class ROSNode(Node):
 
 
     def pose_callback(self, msg):
-        self.gui.lbl_x_val.config(text=f"{msg.x:.1f} ", font=("Arial", 110, "bold",),)
-        self.gui.lbl_y_val.config(text=f"{msg.y:.1f} ", font=("Arial", 110, "bold",))
-        self.gui.lbl_yaw_val.config(text=f"{msg.y:.1f} ", font=("Arial", 110, "bold",))
+        self.gui.lbl_x_val.config(text=f"{msg.x:.1f} ")
+        self.gui.lbl_y_val.config(text=f"{msg.y:.1f} ")
+        self.gui.lbl_yaw_val.config(text=f"{msg.y:.1f} ")
         self.gui.lbl_finder_X.config(text=f"{self.sensor1} =  {msg.x:.1f} ")
         self.gui.lbl_finder_Y.config(text=f"{self.sensor2} =  {msg.y:.1f} ")
         self.gui.lbl_IMU_Z.config(text=f"{self.sensor3} =  {msg.y:.1f} ")

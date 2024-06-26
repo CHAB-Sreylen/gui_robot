@@ -68,7 +68,7 @@ class MyGUI:
         # Create a label to display the image
         self.image_label = tk.Label(self.root,image=self.photo)
         # self.image_label.pack()
-        self.image_label.grid(row=0, column=1)
+        self.image_label.grid(row=0, column=0, columnspan=7, sticky='nsew')
         # self.image_label.pack(row=0,column=0, side=tk.TOP)
 
         
