@@ -72,7 +72,6 @@ class MyGUI:
         # self.image_label.pack(row=0,column=0, side=tk.TOP)
 
         
-
         self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 30 bold'), fg='white') 
         self.button_connected.grid(row=0, column=0, padx=30, pady=20, sticky="nsew")
 

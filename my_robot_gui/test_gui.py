@@ -48,24 +48,41 @@ class MyGUI:
         for i in range(8):
             self.root.grid_rowconfigure(i, weight=1)
 
-        package_share_directory = get_package_share_directory('my_robot_gui')
+        # package_share_directory = get_package_share_directory('my_robot_gui')
 
-        # Construct the path to the image file
-        image_path = os.path.join(package_share_directory, 'assets', 'itc_logo.png')
-        print(image_path)
+        # # Construct the path to the image file
+        # image_path = os.path.join(package_share_directory, 'assets', 'itc_logo.png')
        
-        image = Image.open(image_path)
-        desired_width = 100
-        desired_height = 100
-        image = image.resize((desired_width, desired_height))
-        self.photo = ImageTk.PhotoImage(image)
+        # image = Image.open(image_path)
+        # desired_width = 100
+        # desired_height = 100
+        # image = image.resize((desired_width, desired_height))
+        # self.photo = ImageTk.PhotoImage(image)
 
+        self.itc_logo = self.getImage('itc_logo.png')
+        self.dcLab_logo = self.getImage('dc.png')
+        self.livaLab_logo = self.getImage('liva.png')
  
-        # Create a label to display the image
-        self.image_label = tk.Label(self.root,image=self.photo)
-        # self.image_label.pack()
-        self.image_label.grid(row=0, column=0, columnspan=7, sticky="nsew")
-        # self.image_label.pack(row=0,column=0, side=tk.TOP)
+
+        # Create a label to display the ITC logo
+        self.image_label1 = tk.Label(self.root,image=self.itc_logo)
+        self.image_label1.grid(row=0, column=0, columnspan=7, sticky="nsew")
+
+        self.image_label1 = tk.Label(self.root,image=self.dcLab_logo)
+        self.image_label1.grid(row=0, column=1, columnspan=1, )
+
+        # Create a label to display the DCLab logo
+        self.image_label2 = tk.Label(self.root,image=self.livaLab_logo)
+        self.image_label2.grid(row=0, column=4, columnspan=1, sticky="nsew")
+
+        # logo frame
+        # self.logo_frame = tk.Frame(self.root, bg='#3c3f44')
+        # self.logo_frame.grid(row=0, column=0, columnspan=7, sticky="nsew")
+
+        # # add logo
+        # self.image_label = tk.Label(self.logo_frame,image=self.dcLab_logo)
+        # self.image_label.pack(padx=10)
+
 
         # Create buttons
         self.button_connected = tk.Button(self.root, text="Connected", command=self.toggle_button1, bg="blue", font=('Arial 25 bold'), fg='white') 
@@ -238,6 +255,16 @@ class MyGUI:
             self.button_retry.config(text="Retried", bg='blue')
         else:
             self.button_retry.config(text="Retry", bg='red')
+    def getImage(self, path):
+        package_share_directory = get_package_share_directory('my_robot_gui')
+
+        # Construct the path to the image file
+        image_path = os.path.join(package_share_directory, 'assets', path)
+        image = Image.open(image_path)
+        desired_width = 80
+        desired_height = 80
+        image = image.resize((desired_width, desired_height))
+        return ImageTk.PhotoImage(image)
 
 class ROSNode(Node):
     def __init__(self, gui: MyGUI):
