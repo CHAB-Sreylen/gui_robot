@@ -18,6 +18,7 @@ class MyGUI:
         self.start_value = False
         self.retry_value = True
         self.color_value = True
+        
 
         #Task value
         self.tasks = [

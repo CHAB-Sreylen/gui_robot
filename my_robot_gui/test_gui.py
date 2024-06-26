@@ -68,10 +68,11 @@ class MyGUI:
         self.image_label1 = tk.Label(self.root,image=self.itc_logo)
         self.image_label1.grid(row=0, column=0, columnspan=7, sticky="nsew")
 
+        # Create a label to display the DCLab logo
         self.image_label1 = tk.Label(self.root,image=self.dcLab_logo)
         self.image_label1.grid(row=0, column=1, columnspan=1, )
 
-        # Create a label to display the DCLab logo
+        # Create a label to display the VivaLab logo
         self.image_label2 = tk.Label(self.root,image=self.livaLab_logo)
         self.image_label2.grid(row=0, column=4, columnspan=1, sticky="nsew")
 
